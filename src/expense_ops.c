@@ -17,7 +17,7 @@ void setTimestamp(struct expense* target){
 }
 
 //CHOOSING PREDIFINED CATEGORIES
-void setCategory(struct expense* target){
+int setCategory(struct expense* target){
   printf("--------CATEGORIES--------\n\n");
   printf("       1. Food       \n       2. Transport       \n       3. Utilities       \n       4. Entertainment       \n       5. Healthcare       \n       6. Shopping       \n       7. Education       \n       8. Rent/Housing       \n       9. Miscellaneous       \n\n");
 
@@ -29,7 +29,12 @@ void setCategory(struct expense* target){
     printf("Choose a valid option (1-9): ");
     scanf("%d",&choice);
   }
+  
+  return choice;
+} 
 
+void addCategory(struct expense* target){
+  int choice =setCategory(target);
   switch (choice) {
   case 1: strcpy(target->category, "Food"); break;
   case 2: strcpy(target->category, "Transport"); break;
@@ -43,7 +48,6 @@ void setCategory(struct expense* target){
   }
 
 }  
-
 
 //ADD EXPENSE CORE
 void promptExpenseDetails(struct expense* target){
@@ -67,7 +71,7 @@ void promptExpenseDetails(struct expense* target){
   int c;
     while((c = getchar()) != '\n' && c != EOF);
   
-  setCategory(target); 
+  addCategory(target); 
   
 }     
 // ADD AN EXPENSE
@@ -164,3 +168,20 @@ int editExpense(struct expense expenses[MAX_EXPENSES],int expenseCount){
   return expenseCount;
   
 }
+
+//GET CATEGORY TOATL
+void getCategoryTotal(struct expense* target){
+  int choice = setCategory(target);
+  switch (choice) {
+  case 1: strcpy(target->category, "Food"); break;
+  case 2: strcpy(target->category, "Transport"); break;
+  case 3: strcpy(target->category, "Utilities"); break;
+  case 4: strcpy(target->category, "Entertainment"); break;
+  case 5: strcpy(target->category, "Healthcare"); break;
+  case 6: strcpy(target->category, "Shopping"); break;
+  case 7: strcpy(target->category, "Education"); break;
+  case 8: strcpy(target->category, "Rent/Housing"); break;
+  case 9: strcpy(target->category, "Miscellaneous"); break;
+  }
+}
+
