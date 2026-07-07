@@ -16,8 +16,10 @@ struct expense {
 //prototypes (allthe functions signatures)
 void promptExpenseDetails(struct expense* target);
 void setTimestamp(struct expense* target);
-int setCategory(struct expense* target);
+int setCategory(void);
 void addCategory(struct expense* target);
+void getCategoryTotal(struct expense expenses[MAX_EXPENSES],int expenseCount);
+double sumCategory(struct expense expenses[],int expenseCount, const char category[]);
 int loadExpenses(struct expense expenses[MAX_EXPENSES], int expenseCount);
 void saveExpense(struct expense expenses[MAX_EXPENSES], int expenseCount);
 void addExpense(struct expense expenses[MAX_EXPENSES], int expenseCount);

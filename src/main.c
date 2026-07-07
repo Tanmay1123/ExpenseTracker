@@ -13,14 +13,15 @@ int main() {
   expenseCount = loadExpenses(expenses, expenseCount);
   printf("Loaded %d expenses\n", expenseCount);
 
-  while (option != 6) {
+  while (option != 7) {
     printf("\n\n--------Expense Tracker--------\n");
     printf("1. Add Expense\n");
     printf("2. View Expenses\n");
     printf("3. Show Total Expenses\n");
     printf("4. Delete Expense\n");
     printf("5. Edit Expense\n");
-    printf("6. Exit\n\n");
+    printf("6. Per Category Expenditure\n");
+    printf("7. Exit\n\n");
 
     printf("Choose your option: ");
     scanf("%d", &option);
@@ -51,6 +52,9 @@ int main() {
         rewriteExpenses(expenses, expenseCount);
       break;
       case 6:
+        getCategoryTotal(expenses,expenseCount);
+        break;
+      case 7:
         printf("Program Ended\n");
         break;
       default:

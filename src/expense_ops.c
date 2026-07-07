@@ -17,7 +17,7 @@ void setTimestamp(struct expense* target){
 }
 
 //CHOOSING PREDIFINED CATEGORIES
-int setCategory(struct expense* target){
+int setCategory(void){
   printf("--------CATEGORIES--------\n\n");
   printf("       1. Food       \n       2. Transport       \n       3. Utilities       \n       4. Entertainment       \n       5. Healthcare       \n       6. Shopping       \n       7. Education       \n       8. Rent/Housing       \n       9. Miscellaneous       \n\n");
 
@@ -34,7 +34,7 @@ int setCategory(struct expense* target){
 } 
 
 void addCategory(struct expense* target){
-  int choice =setCategory(target);
+  int choice =setCategory();
   switch (choice) {
   case 1: strcpy(target->category, "Food"); break;
   case 2: strcpy(target->category, "Transport"); break;
@@ -170,18 +170,30 @@ int editExpense(struct expense expenses[MAX_EXPENSES],int expenseCount){
 }
 
 //GET CATEGORY TOATL
-void getCategoryTotal(struct expense* target){
-  int choice = setCategory(target);
+void getCategoryTotal(struct expense expenses[MAX_EXPENSES], int expenseCount){
+
+  int choice = setCategory();
+   
   switch (choice) {
-  case 1: strcpy(target->category, "Food"); break;
-  case 2: strcpy(target->category, "Transport"); break;
-  case 3: strcpy(target->category, "Utilities"); break;
-  case 4: strcpy(target->category, "Entertainment"); break;
-  case 5: strcpy(target->category, "Healthcare"); break;
-  case 6: strcpy(target->category, "Shopping"); break;
-  case 7: strcpy(target->category, "Education"); break;
-  case 8: strcpy(target->category, "Rent/Housing"); break;
-  case 9: strcpy(target->category, "Miscellaneous"); break;
+    case 1: printf("%.2lf\n", sumCategory(expenses, expenseCount, "Food"));  break;
+    case 2: printf("%.2lf\n", sumCategory(expenses, expenseCount, "Transport"));  break;
+    case 3: printf("%.2lf\n", sumCategory(expenses, expenseCount, "Utilities"));  break;
+    case 4: printf("%.2lf\n", sumCategory(expenses, expenseCount, "Entertainment"));  break;
+    case 5: printf("%.2lf\n", sumCategory(expenses, expenseCount, "Healthcare"));  break;
+    case 6: printf("%.2lf\n", sumCategory(expenses, expenseCount, "Shopping"));  break;
+    case 7: printf("%.2lf\n", sumCategory(expenses, expenseCount, "Education"));  break;
+    case 8: printf("%.2lf\n", sumCategory(expenses, expenseCount, "Rent/Housing"));  break;
+    case 9: printf("%.2lf\n", sumCategory(expenses, expenseCount, "Miscellaneous"));  break;
   }
 }
 
+double sumCategory(struct expense expenses[], int expesnseCount, const char category[]){
+  
+  double total = 0;
+  
+  for(int i = 0; i < expesnseCount; i++){
+    if(strcmp(expenses[i].category,category) == 0)
+      total += expenses[i].amount;
+  }
+  return total;
+}
