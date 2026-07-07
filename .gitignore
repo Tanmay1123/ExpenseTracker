@@ -1,0 +1,14 @@
+# Compiled binary
+expense_tracker
+
+# Object files (if you ever compile with separate -c steps)
+*.o
+
+# User data - this is generated/personal, not source code
+expenses.txt
+
+# macOS system files
+.DS_Store
+
+# Editor/IDE settings
+.vscode/
