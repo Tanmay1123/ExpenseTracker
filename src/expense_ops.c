@@ -22,14 +22,20 @@ int setCategory(void){
   printf("       1. Food       \n       2. Transport       \n       3. Utilities       \n       4. Entertainment       \n       5. Healthcare       \n       6. Shopping       \n       7. Education       \n       8. Rent/Housing       \n       9. Miscellaneous       \n\n");
 
   int choice = 0;
-  printf("Choose your option (1-9): ");
-  scanf("%d",&choice);
+  int validRead =0;
 
-  while(choice < 1 || choice >9) {
+  printf("Choose your option (1-9): ");
+  validRead = scanf("%d",&choice);
+
+  while(validRead != 1 || choice < 1 || choice > 9){
     printf("Choose a valid option (1-9): ");
-    scanf("%d",&choice);
+
+    if(validRead != 1){
+      int c;
+      while((c = getchar()) != '\n' && c != EOF);
+    }
+    validRead = scanf("%d", &choice);
   }
-  
   return choice;
 } 
 
@@ -60,7 +66,7 @@ void promptExpenseDetails(struct expense* target){
 
   printf("Amount: ");
     while(scanf("%lf",&target->amount) != 1){
-      printf("Invalid input. Please eneter a valid number.\n");
+      printf("Invalid input. Please enter a valid number.\n");
 
       int c;
       while((c = getchar()) != '\n' && c != EOF);
